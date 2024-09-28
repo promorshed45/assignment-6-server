@@ -1,4 +1,3 @@
-import { USER_ROLE } from './../modules/User/user.utils';
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
@@ -6,6 +5,7 @@ import config from '../config';
 import AppError from '../errors/AppError';
 import { User } from '../modules/User/user.model';
 import catchAsync from '../utils/catchAsync';
+import { USER_ROLE } from '../modules/User/user.constant';
 
 const auth = (...requiredRoles: (keyof typeof USER_ROLE)[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {

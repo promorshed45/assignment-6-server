@@ -10,7 +10,14 @@ type TModuleRoutes = {
 const router = Router();
 
 const moduleRoutes: TModuleRoutes[] = [
-
+  {
+    path: '/users',
+    route: UserRoutes,
+  },
+  {
+    path: '/auth',
+    route: AuthRoutes,
+  }
  
 ];
 
