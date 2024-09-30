@@ -1,34 +1,35 @@
-import config from '../../config';
-import { IUser } from './user.interface';
+import { QueryBuilder } from '../../builder/QueryBuilder';
+import { UserSearchableFields } from './user.constant';
+import { TUser } from './user.interface';
 import { User } from './user.model';
-import bcryptJs from 'bcryptjs';
 
+const createUser = async (payload: TUser) => {
+  const user = await User.create(payload);
 
-const createUser = async (user: IUser) => {
-  user.password = await bcryptJs.hash(
-    user.password,
-    Number(config.bcrypt_salt_rounds),
-  );
-  return await User.create(user);
+  return user;
 };
 
-const findUserById = async (userId: string) => {
-  return await User.findById(userId);
-};
+const getAllUsersFromDB = async (query: Record<string, unknown>) => {
+  const users = new QueryBuilder(User.find(), query)
+    .fields()
+    .paginate()
+    .sort()
+    .filter()
+    .search(UserSearchableFields);
 
+  const result = await users.modelQuery;
 
-const updateUserById = async (userId: string, payload: Partial<IUser>) => {
-  const result = await User.findByIdAndUpdate({ _id: userId }, payload, {
-    new: true,
-    runValidators: true,
-  });
   return result;
 };
 
+const getSingleUserFromDB = async (id: string) => {
+  const user = await User.findById(id);
 
+  return user;
+};
 
-export const UserService = {
+export const UserServices = {
   createUser,
-  findUserById,
-  updateUserById,
+  getAllUsersFromDB,
+  getSingleUserFromDB,
 };

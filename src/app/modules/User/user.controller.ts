@@ -1,49 +1,43 @@
 import httpStatus from 'http-status';
-import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
-import { UserService } from './user.service';
+import catchAsync from '../../utils/catchAsync';
+import { UserServices } from './user.service';
 
-const createUser = catchAsync(async (req, res) => {
-  const result = await UserService.createUser(req.body);
+const userRegister = catchAsync(async (req, res) => {
+  const user = await UserServices.createUser(req.body);
 
   sendResponse(res, {
-    statusCode: httpStatus.CREATED,
     success: true,
-    message: 'User is created succesfully',
-    data: result,
-  });
-});
-
-const findUserById = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const result = await UserService.findUserById(id);
-
-  sendResponse(res, {
     statusCode: httpStatus.OK,
-    success: true,
-    message: 'User is retrieved succesfully',
-    data: result,
+    message: 'User Created Successfully',
+    data: user,
   });
 });
 
-
-
-const updateUserById = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const result = await UserService.updateUserById(id, req.body);
+const getAllUsers = catchAsync(async (req, res) => {
+  const users = await UserServices.getAllUsersFromDB(req.query);
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'User is updated succesfully',
-    data: result,
+    statusCode: httpStatus.OK,
+    message: 'Users Retrieved Successfully',
+    data: users,
   });
 });
 
+const getSingleUser = catchAsync(async (req, res) => {
+  const user = await UserServices.getSingleUserFromDB(req.params.id);
 
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'User Retrieved Successfully',
+    data: user,
+  });
+});
 
-export const UserController = {
-  createUser,
-  findUserById,
-  updateUserById,
+export const UserControllers = {
+  getSingleUser,
+  userRegister,
+  getAllUsers,
 };

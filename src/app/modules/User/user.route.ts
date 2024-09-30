@@ -1,32 +1,19 @@
 import express from 'express';
-import validateRequest from '../../middlewares/validateRequest';
-import { UserController } from './user.controller';
-import { createUserValidationSchema, updateUserValidationSchema, } from './user.validation';
+import { UserControllers } from './user.controller';
 import auth from '../../middlewares/auth';
 import { USER_ROLE } from './user.constant';
+import validateRequest from '../../middlewares/validateRequest';
+import { UserValidation } from './user.validation';
 
 const router = express.Router();
 
 router.post(
-  '/',
+  '/create-user',
   auth(USER_ROLE.admin),
-  validateRequest(createUserValidationSchema),
-  UserController.createUser,
+  validateRequest(UserValidation.createUserValidationSchema),
+  UserControllers.userRegister,
 );
-
-
-router.get(
-  '/:id',
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  UserController.findUserById,
-);
-
-router.patch(
-  '/:id',
-  auth(USER_ROLE.admin),
-  validateRequest(updateUserValidationSchema),
-  UserController.updateUserById,
-);
-
+router.get('/', UserControllers.getAllUsers);
+router.get('/:id', UserControllers.getSingleUser);
 
 export const UserRoutes = router;
