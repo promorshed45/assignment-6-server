@@ -12,4 +12,9 @@ export default {
   jwt_refresh_secret: process.env.JWT_REFRESH_SECRET,
   jwt_refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,
   bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUND,
+  cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
+  cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
+  meilisearch_host: process.env.MEILISEARCH_HOST,
+  meilisearch_master_key: process.env.MEILISEARCH_MASTER_KEY
 };
