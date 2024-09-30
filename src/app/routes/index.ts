@@ -3,6 +3,7 @@ import { AuthRoutes } from '../modules/Auth/auth.route';
 import { UserRoutes } from '../modules/User/user.route';
 import { ProfileRoutes } from '../modules/Profile/profile.route';
 import { PostRoutes } from '../modules/createPost/post.route';
+import { CommentRoutes } from '../modules/UserComment/comment.route';
 
 type TModuleRoutes = {
   path: string;
@@ -21,13 +22,18 @@ const moduleRoutes: TModuleRoutes[] = [
     route: AuthRoutes,
   },
   {
+    path: '/profile',
+    route: ProfileRoutes,
+  },
+  {
     path: '/post',
     route: PostRoutes,
   },
   {
-    path: '/profile',
-    route: ProfileRoutes,
-  },
+    path: '/comment',
+    route: CommentRoutes,
+  }
+  
  
 ];
 
