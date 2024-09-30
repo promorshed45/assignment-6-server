@@ -18,6 +18,7 @@ const createUserValidationSchema = z.object({
       required_error: 'Password is required',
     }),
     status: z.nativeEnum(USER_STATUS).default(USER_STATUS.ACTIVE),
+    profilePhoto: z.string().optional(),
     mobileNumber: z.string().optional(),
     verified: z.boolean().optional().default(false),
     flower: z.number().optional().default(0),

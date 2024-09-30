@@ -44,7 +44,6 @@ const userSchema = new Schema<TUser, IUserModel>(
     },
     profilePhoto: {
       type: String,
-      default: null,
     },
     verified: {
       type: Boolean,
