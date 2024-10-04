@@ -1,18 +1,24 @@
-import { ObjectId } from 'mongoose';
-import { DISTRICTS, POST_CATEGORY, POST_STATUS } from './post.constant';
-type District = (typeof DISTRICTS)[number];
+import { Document, Types } from "mongoose";
+import { POST_STATUS } from "./post.constant";
 
-export type TPost = {
+export interface TPost extends Document {
+  user: Types.ObjectId; 
+  images?: string[];
   title: string;
   description: string;
-  images?: string[];
-  city: District;
-  location: string;
-  status?: keyof typeof POST_STATUS;
-  authorId: ObjectId;
-  category: keyof typeof POST_CATEGORY;
-  upvote?: number;
-  downvote?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
+  comments?: Types.ObjectId[];
+  status: TPostStatus;
+  report?: Types.ObjectId[];
+  reportCount: number;
+  Upvotes: Types.ObjectId;
+  downvotes: Types.ObjectId;
+  isDeleted: boolean;
+}
+
+export interface TReport {
+  user: Types.ObjectId;
+  post: Types.ObjectId;
+  report: string;
+}
+
+export type TPostStatus = keyof typeof POST_STATUS;

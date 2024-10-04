@@ -1,3 +1,12 @@
+export const POST_STATUS = {
+  FREE: "FREE",
+  PREMIUM: "PREMIUM",
+} as const;
+
+export const postSearchFelids = ["title", "description"];
+
+
+
 export const POST_CATEGORY = {
   BUSINESS_TRAVEL: 'BUSINESS_TRAVEL',
   EXPLORATION: 'EXPLORATION',
@@ -9,10 +18,10 @@ export const POST_CATEGORY = {
 } as const;
 
 
-export const POST_STATUS = {
-  ACTIVE: 'ACTIVE',
-  DELETED: 'DELETED',
-} as const;
+// export const POST_STATUS = {
+//   ACTIVE: 'ACTIVE',
+//   DELETED: 'DELETED',
+// } as const;
 
 export const DISTRICTS = [
   'Bagerhat',

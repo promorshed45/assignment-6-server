@@ -23,7 +23,7 @@ const createPost = catchAsync(async (req, res) => {
 });
 
 const getAllPost = catchAsync(async (req, res) => {
-  const postData = await PostServices.getAllPostFromFromDB(req.query);
+  const postData = await PostServices.getAllPostFromDB(req.query);
 
   sendResponse(res, {
     success: true,
@@ -32,6 +32,32 @@ const getAllPost = catchAsync(async (req, res) => {
     data: postData,
   });
 });
+
+
+// const getAllPremiumPosts = catchAsync(async (req, res) => {
+//   const postData = await PostServices.getAllPremiumPostFromDB(req.query);
+
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: httpStatus.OK,
+//     message: 'Premium Post retrieved successfully',
+//     data: postData,
+//   });
+// });
+
+
+// Get all  premium posts
+const getAllPremiumPosts = catchAsync(async (req, res) => {
+  const posts = await PostServices.getAllPremiumPostsFromDB(req.query);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Premium posts retrieved successfully",
+    data: posts,
+  });
+});
+
+
 
 const getPost = catchAsync(async (req, res) => {
   const postId = req.params.id;
@@ -72,6 +98,7 @@ const deletePost = catchAsync(async (req, res) => {
 export const PostControllers = {
   createPost,
   getAllPost,
+  getAllPremiumPosts,
   getPost,
   updatePost,
   deletePost,

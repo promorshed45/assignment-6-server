@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.post(
   '/',
-  auth(USER_ROLE.USER),
+  auth("USER", "ADMIN"),
   multerUpload.fields([{ name: 'postImages' }]),
   validateImageFileRequest(ImageFilesArrayZodSchema),
   parseBody,
@@ -28,9 +28,15 @@ router.get('/', PostControllers.getAllPost);
 
 router.get('/:id', PostControllers.getPost);
 
+router.get(
+  "/premium",
+  auth("USER","ADMIN"),
+  PostControllers.getAllPremiumPosts
+);
+
 router.put(
   '/:id',
-  auth(USER_ROLE.USER),
+  auth("USER"),
   validateRequest(UpdatePostValidation),
   PostControllers.updatePost,
 );
