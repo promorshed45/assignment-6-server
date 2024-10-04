@@ -4,6 +4,7 @@ import { UserRoutes } from '../modules/User/user.route';
 import { ProfileRoutes } from '../modules/Profile/profile.route';
 import { PostRoutes } from '../modules/createPost/post.route';
 import { CommentRoutes } from '../modules/UserComment/comment.route';
+import { PaymentRoute } from '../modules/payment/payment.route';
 
 type TModuleRoutes = {
   path: string;
@@ -32,7 +33,11 @@ const moduleRoutes: TModuleRoutes[] = [
   {
     path: '/comment',
     route: CommentRoutes,
-  }
+  },
+  {
+    path: "/payment",
+    route: PaymentRoute,
+},
   
  
 ];
