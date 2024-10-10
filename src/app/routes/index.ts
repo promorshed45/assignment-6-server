@@ -35,7 +35,7 @@ const moduleRoutes: TModuleRoutes[] = [
     route: CommentRoutes,
   },
   {
-    path: "/payment",
+    path: "/verifyAccount",
     route: PaymentRoute,
 },
   

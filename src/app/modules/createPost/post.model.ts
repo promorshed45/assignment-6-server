@@ -17,6 +17,7 @@ const postSchema = new Schema<TPost>(
     images: { type: [String], default: []},
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true },
+    category: { type: String, required: true },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
     status: { type: String, enum: [POST_STATUS.FREE, POST_STATUS.PREMIUM] },
     report: [reportSchema],

@@ -10,6 +10,7 @@ export const PostValidation = z.object({
       .max(255, { message: 'Title must be less than 255 characters' })
       .trim(),
     description: z.string().min(1, { message: 'Description is required' }),
+    category: z.string().min(1, { message: 'Category is required' }),
     images: z.array(z.string()).optional(),
     comments: z.array(z.string()).optional(), 
     status: z.nativeEnum(POST_STATUS, { errorMap: () => ({ message: 'Invalid status' }) })

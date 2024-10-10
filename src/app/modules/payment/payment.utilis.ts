@@ -9,7 +9,7 @@ export const initiatePayment = async (paymentData: any) => {
     store_id: config.store_id,
     signature_key: config.signature_key,
     tran_id: paymentData.transactionId,
-    success_url: "http://localhost:5000/api/payment/confirmation",
+    success_url: "http://localhost:5000/api/payment/verifyAccount",
     // success_url: "https://travel-trove-server.vercel.app/api/payment/confirmation",
     fail_url: "http://www.merchantdomain.com/failedpage.html",
     cancel_url: "http://www.merchantdomain.com/cancellpage.html",

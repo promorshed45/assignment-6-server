@@ -16,6 +16,8 @@ router.post(
 
 router.get('/:id', CommentControllers.getComment);
 
+router.get('/:id', CommentControllers.getComment);
+
 router.put(
   '/:id',
   auth(USER_ROLE.USER),

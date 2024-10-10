@@ -89,7 +89,8 @@ const confirmationController = async (req: Request, res: Response) => {
           </div>
           <h2>Payment Successful!</h2>
           <p>Thank you for your payment. <br> Your transaction was completed successfully.</p>
-          <a href="http://localhost:3000/">Go to Home </a>
+          <a href="http://localhost:3000">Go to Home </a>
+          <a href="https://travel-tips-client-three.vercel.app">Go to Home </a>
         </div>
       </div>
     </body>

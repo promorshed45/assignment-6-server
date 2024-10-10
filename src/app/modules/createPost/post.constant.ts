@@ -8,13 +8,13 @@ export const postSearchFelids = ["title", "description"];
 
 
 export const POST_CATEGORY = {
-  BUSINESS_TRAVEL: 'BUSINESS_TRAVEL',
-  EXPLORATION: 'EXPLORATION',
-  TRAVEL_TIPS: 'TRAVEL TIPS',
-  CULTURAL_EXPERIENCES: 'CULTURAL EXPERIENCES',
-  DESTINATION_GUIDES: 'DESTINATION GUIDES',
-  FOOD_AND_DRINK: 'FOOD AND DRINK',
-  ADVENTURE_ACTIVITIES: 'ADVENTURE ACTIVITIES',
+  Business_Travel: 'Business Travel',
+  Exploration: 'Exploration',
+  Travel_Tips: 'Travel Tips',
+  Cultural_Experiences: 'Cultural Experiences',
+  Destination_Guides: 'Destination Guides',
+  Food_And_Drink: 'Food And Drink',
+  Adventure_Activities: 'Adventure Activities',
 } as const;
 
 

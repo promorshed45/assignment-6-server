@@ -5,7 +5,7 @@ import {
   SearchItemByDateRangeQueryMaker,
   SearchItemByUserQueryMaker,
 } from './post.utils';
-import { PostSearchableFields, postSearchFelids } from './post.constant';
+import { PostSearchableFields } from './post.constant';
 
 import { TPost } from './post.interface';
 import { Post } from './post.model';
@@ -55,10 +55,10 @@ const getAllPostFromDB = async (query: Record<string, unknown>) => {
 };
 
 
-const getPostFromDB = async (itemId: string) => {
-  const result = await Post.findById(itemId)
-    .populate('authorId')
-    .populate('category');
+const getPostFromDB = async (postId: string) => {
+  const result = await Post.findById(postId)
+    .populate('user')
+    // .populate('category');
   return result;
 };
 

@@ -6,8 +6,9 @@ export interface TPost extends Document {
   images?: string[];
   title: string;
   description: string;
-  comments?: Types.ObjectId[];
+  category: string;
   status: TPostStatus;
+  comments?: Types.ObjectId[];
   report?: Types.ObjectId[];
   reportCount: number;
   Upvotes: Types.ObjectId;

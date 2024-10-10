@@ -16,7 +16,7 @@ const createComment = catchAsync(async (req, res) => {
 
 
 const getComment = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
   const result = await CommentServices.getComment(id);
 
   sendResponse(res, {
