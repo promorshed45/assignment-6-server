@@ -18,6 +18,7 @@ export default {
   store_id: process.env.STORE_ID,
   signature_key: process.env.SIGNATURE_KEY,
   payment_url: process.env.PAYMENT_URL,
+  verify_payment_url:process.env.VERIFY_PAYMENT_URL,
   meilisearch_host: process.env.MEILISEARCH_HOST,
   meilisearch_master_key: process.env.MEILISEARCH_MASTER_KEY
 };

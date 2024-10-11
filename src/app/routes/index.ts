@@ -4,7 +4,8 @@ import { UserRoutes } from '../modules/User/user.route';
 import { ProfileRoutes } from '../modules/Profile/profile.route';
 import { PostRoutes } from '../modules/createPost/post.route';
 import { CommentRoutes } from '../modules/UserComment/comment.route';
-import { PaymentRoute } from '../modules/payment/payment.route';
+import { paymentRouter } from '../utils/payment/paymant.router';
+import { verifyUserRoutes } from '../modules/Verify/verify.router';
 
 type TModuleRoutes = {
   path: string;
@@ -35,9 +36,13 @@ const moduleRoutes: TModuleRoutes[] = [
     route: CommentRoutes,
   },
   {
-    path: "/verifyAccount",
-    route: PaymentRoute,
-},
+    path: "/payment",
+    route: paymentRouter,
+  },
+   {
+    path: '/verifyAccount',
+    route: verifyUserRoutes,
+  },
   
  
 ];
