@@ -7,7 +7,7 @@ const router = Router();
 // Route to create an order
 router.post(
   '/',
-  auth('USER', 'ADMIN'),
+  // auth('USER', 'ADMIN'),
   verifyController.createVerifyController,
 );
 router.get('/all-payment', auth('ADMIN'), verifyController.getAllVerifyInFo);

@@ -28,8 +28,18 @@ const getSingleUserFromDB = async (id: string) => {
   return user;
 };
 
+//update profile
+const updateProfile = async  (userId:string , payload: Partial<TUser>) => {
+ 
+  const res = await User.updateOne({_id:userId}, payload, {
+    new: true,
+  });
+  return res;
+};
+
 export const UserServices = {
   createUser,
   getAllUsersFromDB,
   getSingleUserFromDB,
+  updateProfile
 };
