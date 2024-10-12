@@ -15,7 +15,9 @@ router.post(
 );
 router.get('/', UserControllers.getAllUsers);
 router.get('/:id', UserControllers.getSingleUser);
-router.patch('/updateUser/:id', UserControllers.updateUser)
-
+router.delete('/:id', UserControllers.deleteUser);
+router.patch('/updateUser/:id', 
+  // auth('ADMIN'), 
+UserControllers.updateUser);
 
 export const UserRoutes = router;

@@ -18,28 +18,31 @@ const getAllUsersFromDB = async (query: Record<string, unknown>) => {
     .search(UserSearchableFields);
 
   const result = await users.modelQuery;
-
   return result;
 };
 
 const getSingleUserFromDB = async (id: string) => {
   const user = await User.findById(id);
-
   return user;
 };
 
 //update profile
 const updateProfile = async  (userId:string , payload: Partial<TUser>) => {
- 
-  const res = await User.updateOne({_id:userId}, payload, {
+  const result = await User.updateOne({_id: userId}, payload, {
     new: true,
   });
-  return res;
+  return result;
+};
+
+const deleteUser = async (userId: string) => {
+  const result = await User.findOneAndDelete({ _id: userId });
+  return result;
 };
 
 export const UserServices = {
   createUser,
   getAllUsersFromDB,
   getSingleUserFromDB,
-  updateProfile
+  updateProfile,
+  deleteUser
 };
