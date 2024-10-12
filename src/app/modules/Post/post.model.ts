@@ -29,4 +29,6 @@ const postSchema = new Schema<TPost>(
   { timestamps: true }
 );
 
+
+
 export const Post = mongoose.model<TPost>("Post", postSchema);

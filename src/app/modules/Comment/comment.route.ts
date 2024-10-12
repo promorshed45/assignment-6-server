@@ -9,12 +9,10 @@ const router = express.Router();
 
 router.post(
   '/',
-  auth(USER_ROLE.USER),
+  auth("USER","ADMIN"),
   validateRequest(CommentValidation),
   CommentControllers.createComment,
 );
-
-router.get('/:id', CommentControllers.getComment);
 
 router.get('/:id', CommentControllers.getComment);
 

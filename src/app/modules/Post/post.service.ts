@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { QueryBuilder } from '../../builder/QueryBuilder';
 import { TImageFiles } from '../../interface/image.interface';
-import {
-  SearchItemByDateRangeQueryMaker,
-  SearchItemByUserQueryMaker,
-} from './post.utils';
 import { PostSearchableFields } from './post.constant';
-
 import { TPost } from './post.interface';
 import { Post } from './post.model';
+import { SearchItemByDateRangeQueryMaker, SearchItemByUserQueryMaker } from './post.utils';
+
+
 
 const createPostIntoDB = async (payload: TPost, images: TImageFiles) => {
 
@@ -23,6 +21,11 @@ const createPostIntoDB = async (payload: TPost, images: TImageFiles) => {
 
 
   const result = await Post.create(payload);
+  // if (result) {
+  //   await addDocumentToIndex(result, 'items');
+  // } else {
+  //   throw new Error(`Item with ID ${itemId} not found.`);
+  // }
 
   return result;
 };
@@ -62,13 +65,11 @@ const getPostFromDB = async (postId: string) => {
   return result;
 };
 
-const updatePostInDB = async (PostId: string, payload: TPost) => {
-  const result = await Post.findByIdAndUpdate(PostId, payload, { new: true });
-  // if (result) {
-  //   await addDocumentToIndex(result, 'items');
-  // } else {
-  //   throw new Error(`Item with ID ${itemId} not found.`);
-  // }
+
+const updatePost = async  (userId:string , payload: any) => {
+  const result = await Post.updateOne({_id: userId}, payload, {
+    new: true,
+  });
   return result;
 };
 
@@ -81,10 +82,14 @@ const deletePostFromDB = async (itemId: string) => {
   return result;
 };
 
+
+
+
 export const PostServices = {
   createPostIntoDB,
   getAllPostFromDB,
   getPostFromDB,
-  updatePostInDB,
+  updatePost,
   deletePostFromDB,
+  // updatepost
 };

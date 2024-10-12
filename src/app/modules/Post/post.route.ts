@@ -2,15 +2,13 @@ import express from 'express';
 import auth from '../../middlewares/auth';
 import { USER_ROLE } from '../User/user.constant';
 import validateRequest from '../../middlewares/validateRequest';
-import {
-  PostValidation,
-  UpdatePostValidation,
-} from './post.validation';
+
 import { PostControllers } from './post.controller';
 import { parseBody } from '../../middlewares/bodyParser';
 import validateImageFileRequest from '../../middlewares/validateImageFileRequest';
 import { ImageFilesArrayZodSchema } from '../../zod/image.validation';
 import { multerUpload } from '../../config/multer.config';
+import { PostValidation } from './post.validation';
 
 const router = express.Router();
 
@@ -29,13 +27,19 @@ router.get('/', PostControllers.getAllPost);
 router.get('/:id', PostControllers.getPost);
 
 
-router.put(
-  '/:id',
-  auth("USER"),
-  validateRequest(UpdatePostValidation),
-  PostControllers.updatePost,
-);
+// router.patch(
+//   '/:id',
+//   auth("USER", "ADMIN"),
+//   validateRequest(UpdatePostValidation),
+//   PostControllers.updatePost
+// );
 
-router.delete('/:id', auth(USER_ROLE.USER), PostControllers.deletePost);
+router.patch('/:id', 
+  // auth('ADMIN'),
+  PostControllers.updatePost);
+
+
+
+router.delete('/:id', auth("USER","ADMIN"), PostControllers.deletePost);
 
 export const PostRoutes = router;
