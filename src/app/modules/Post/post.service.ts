@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { QueryBuilder } from '../../builder/QueryBuilder';
 import { TImageFiles } from '../../interface/image.interface';
+import { addDocumentToIndex } from '../../utils/meilisearch';
 import { PostSearchableFields } from './post.constant';
 import { TPost } from './post.interface';
 import { Post } from './post.model';
@@ -21,11 +22,7 @@ const createPostIntoDB = async (payload: TPost, images: TImageFiles) => {
 
 
   const result = await Post.create(payload);
-  // if (result) {
-  //   await addDocumentToIndex(result, 'items');
-  // } else {
-  //   throw new Error(`Item with ID ${itemId} not found.`);
-  // }
+  await addDocumentToIndex(result, "posts")
 
   return result;
 };

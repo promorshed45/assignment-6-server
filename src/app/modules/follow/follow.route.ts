@@ -13,13 +13,13 @@ router.post(
 
 router.get(
   '/',
-  auth("USER","ADMIN"),
+  // auth("USER","ADMIN"),
   FollowController.getAllFollow,
 );
 
 router.get(
   '/filter',
-  auth("USER","ADMIN"),
+  // auth("USER","ADMIN"),
   FollowController.getAllFollowFilter,
 );
 

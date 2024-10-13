@@ -18,7 +18,6 @@ const createFollow = catchAsync(async (req, res) => {
 
 const getAllFollow = catchAsync(async (req, res) => {
     const result = await FollowServices.getAllFollow();
-    console.log(result);
     sendResponse(res, {
       success: true,
       statusCode: httpStatus.OK,
