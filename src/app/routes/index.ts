@@ -7,6 +7,7 @@ import { CommentRoutes } from '../modules/Comment/comment.route';
 import { paymentRouter } from '../utils/payment/paymant.router';
 import { verifyUserRoutes } from '../modules/Verify/verify.router';
 import { FollowRoute } from '../modules/follow/follow.route';
+import { MeilisearchRoute } from '../modules/Meilisearch/meilisearch.routes';
 
 type TModuleRoutes = {
   path: string;
@@ -48,6 +49,10 @@ const moduleRoutes: TModuleRoutes[] = [
     path: '/verifyAccount',
     route: verifyUserRoutes,
   },
+  {
+    path: '/search-posts',
+    route: MeilisearchRoute,
+},
   
  
 ];

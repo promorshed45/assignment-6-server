@@ -1,7 +1,7 @@
 import meiliClient from "../../utils/meilisearch";
 
 const getAllItems = async (limit: number, searchTerm?: string) => {
-  const index = meiliClient?.index('products');
+  const index = meiliClient?.index('posts');
 
   if (!index) {
     throw new Error('MeiliSearch client or index not found');

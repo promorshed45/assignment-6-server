@@ -5,7 +5,7 @@ import config from '../config';
 import { TPost } from '../modules/Post/post.interface';
 import { noImage } from '../modules/Meilisearch/noimages.constan';
 
-const meiliClient = new MeiliSearch({
+export const meiliClient = new MeiliSearch({
   host: config.meilisearch_host as string,
   apiKey: config.meilisearch_master_key,
 });
