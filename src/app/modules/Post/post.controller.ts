@@ -48,16 +48,19 @@ const getPost = catchAsync(async (req, res) => {
 });
 
 
-const updatePost = catchAsync(async (req, res) => {
-  const userId=req.params.id
-   const result = await PostServices.updatePost(userId,req.body);
-   sendResponse(res, {
-     success: true,
-     statusCode: httpStatus.OK,
-     message: "User update Successfully",
-     data: result,
-   });
- });
+ const updatePost = catchAsync(async (req, res) => {
+  const postId = req.params.id;
+  const result = await PostServices.updatePost(postId, req.body);
+
+  console.log('Post Data to Update:', result);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Post updated successfully",
+    data: result,
+  });
+});
 
 
 const deletePost = catchAsync(async (req, res) => {

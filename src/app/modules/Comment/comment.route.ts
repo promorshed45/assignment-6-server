@@ -18,7 +18,7 @@ router.get('/:id', CommentControllers.getComment);
 
 router.put(
   '/:id',
-  auth(USER_ROLE.USER),
+  auth("USER","ADMIN"),
   validateRequest(EditCommentValidation),
   CommentControllers.updateComment,
 );

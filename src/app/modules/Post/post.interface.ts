@@ -8,11 +8,6 @@ export interface TPost extends Document {
   description: string;
   category: string;
   status: TPostStatus;
-  comments?: Types.ObjectId[];
-  report?: Types.ObjectId[];
-  reportCount: number;
-  Upvotes: Types.ObjectId;
-  downvotes: Types.ObjectId;
   isDeleted: boolean;
 }
 

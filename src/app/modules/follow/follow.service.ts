@@ -19,8 +19,6 @@ const createFollowUser = async (payload: TFollow) => {
     return result;
   };
 
-  
-
 export const FollowServices = {
     createFollowUser,
     getAllFollow,

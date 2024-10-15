@@ -63,7 +63,7 @@ const loginUser = async (payload: TLoginUser) => {
 
   const userStatus = user?.status;
 
-  if (userStatus === 'BLOCKED') {
+  if (userStatus === 'Blocked') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
 
@@ -118,7 +118,7 @@ const changePassword = async (
 
   const userStatus = user?.status;
 
-  if (userStatus === 'BLOCKED') {
+  if (userStatus === 'Blocked') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
 
@@ -166,7 +166,7 @@ const refreshToken = async (token: string) => {
   // checking if the user is blocked
   const userStatus = user?.status;
 
-  if (userStatus === 'BLOCKED') {
+  if (userStatus === 'Blocked') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
 

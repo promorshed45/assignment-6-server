@@ -34,19 +34,12 @@ const getAllPostFromDB = async (query: Record<string, unknown>) => {
   query = (await SearchItemByDateRangeQueryMaker(query)) || query;
 
   const postQuery = new QueryBuilder(
-    Post.find({ isDeleted: false }).populate('user').populate({
-      path: "comments",
-      populate: {
-        path: "user",
-        model: "User",
-      },
-    }).set({ strictPopulate: true }),
+    Post.find({ isDeleted: false }).populate('user').set({ strictPopulate: true }),
     query,
   )
     .filter()
     .search(PostSearchableFields)
     .sort()
-    // .paginate()
     .fields();
 
   const result = await postQuery.modelQuery;
@@ -58,16 +51,15 @@ const getAllPostFromDB = async (query: Record<string, unknown>) => {
 const getPostFromDB = async (postId: string) => {
   const result = await Post.findById(postId)
     .populate('user')
-    // .populate('category');
   return result;
 };
 
 
-const updatePost = async  (userId:string , payload: any) => {
-  const result = await Post.updateOne({_id: userId}, payload, {
-    new: true,
-  });
-  return result;
+
+const updatePost = async (id: string, payload: Partial<TPost>) => {
+  const post = await Post.findByIdAndUpdate(id, payload, { new: true });
+
+  return post;
 };
 
 const deletePostFromDB = async (itemId: string) => {

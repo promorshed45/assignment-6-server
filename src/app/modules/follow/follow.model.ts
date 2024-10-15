@@ -2,8 +2,6 @@ import mongoose, { Schema } from "mongoose";
 import { TFollow } from "./follow.interface";
 
 
-
-
 const followSchema = new Schema<TFollow>(
   {
     followingId: { type: Schema.Types.ObjectId, ref: "User", required: true },

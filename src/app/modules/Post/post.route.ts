@@ -1,6 +1,5 @@
 import express from 'express';
 import auth from '../../middlewares/auth';
-import { USER_ROLE } from '../User/user.constant';
 import validateRequest from '../../middlewares/validateRequest';
 
 import { PostControllers } from './post.controller';
@@ -35,7 +34,8 @@ router.get('/:id', PostControllers.getPost);
 // );
 
 router.patch('/:id', 
-  // auth('ADMIN'),
+  // multerUpload.fields([{ name: 'postImages' }]),
+  // auth('ADMIN',"USER"),
   PostControllers.updatePost);
 
 

@@ -9,7 +9,7 @@ import { TImageFile } from "../../interface/image.interface";
 const getMyProfile = async (user: JwtPayload) => {
     const profile = await User.findOne({
         email: user.email,
-        status: USER_STATUS.ACTIVE
+        status: USER_STATUS.Active
     });
 
     if (!profile) {
@@ -26,7 +26,7 @@ const updateMyProfile = async (
 ) => {
     const filter = {
         email: user.email,
-        status: USER_STATUS.ACTIVE
+        status: USER_STATUS.Active
     };
 
     const profile = await User.findOne(filter);
