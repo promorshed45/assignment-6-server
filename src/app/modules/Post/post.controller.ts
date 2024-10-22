@@ -76,6 +76,49 @@ const deletePost = catchAsync(async (req, res) => {
 });
 
 
+const generatePdf = catchAsync(async (req, res) => {
+  try {
+    const post = req.body;
+
+    // Check if post data is valid
+    if (!post || !post.title || !post.description) {
+      return res.status(400).json({ message: 'Invalid post data' });
+    }
+
+    const pdfBuffer = await PostServices.generatePdfPost(post);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=${post._id}.pdf`);
+    res.send(pdfBuffer);
+
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    res.status(500).json({ message: 'Failed to generate PDF', error: error.message });
+  }
+});
+
+
+const createPdfPost = catchAsync(async (req, res) => {
+  const post = req.body;
+
+  try {
+    if (!post.title || !post.description) {
+      throw new Error("Title and description are required");
+    }
+
+    const pdfBuffer = await PostServices.createPdfPost(post);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${post.title || 'my-document'}.pdf"`);
+    
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error("Error creating PDF:", error);
+    res.status(500).send("Failed to create PDF");
+  }
+});
+
+
+
 
 export const PostControllers = {
   createPost,
@@ -83,4 +126,6 @@ export const PostControllers = {
   getPost,
   updatePost,
   deletePost,
+  generatePdf,
+  createPdfPost
 };
