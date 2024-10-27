@@ -4,8 +4,6 @@ import { UserRoutes } from '../modules/User/user.route';
 import { ProfileRoutes } from '../modules/Profile/profile.route';
 import { PostRoutes } from '../modules/Post/post.route';
 import { CommentRoutes } from '../modules/Comment/comment.route';
-import { paymentRouter } from '../utils/payment/paymant.router';
-import { verifyUserRoutes } from '../modules/Verify/verify.router';
 import { FollowRoute } from '../modules/follow/follow.route';
 import { MeilisearchRoute } from '../modules/Meilisearch/meilisearch.routes';
 
@@ -41,14 +39,8 @@ const moduleRoutes: TModuleRoutes[] = [
     path: '/following',
     route: FollowRoute,
   },
-  {
-    path: "/payment",
-    route: paymentRouter,
-  },
-   {
-    path: '/verifyAccount',
-    route: verifyUserRoutes,
-  },
+
+  
   {
     path: '/search-posts',
     route: MeilisearchRoute,

@@ -39,10 +39,7 @@ router.patch('/:id',
   PostControllers.updatePost);
 
 
-
 router.delete('/:id', auth("USER","ADMIN"), PostControllers.deletePost);
 
-router.post('/generate-pdf', PostControllers.generatePdf);
-router.post('/create-pdf', PostControllers.createPdfPost);
 
 export const PostRoutes = router;

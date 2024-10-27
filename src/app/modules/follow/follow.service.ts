@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TFollow } from "./follow.interface";
 import { Follow } from "./follow.model";
 
@@ -19,8 +20,16 @@ const createFollowUser = async (payload: TFollow) => {
     return result;
   };
 
+
+  const unfollowUser = async ({ followerId, followingId }: any) => {
+    const result = await Follow.findOneAndDelete({ followerId, followingId });
+    
+    return result;
+  };
+
 export const FollowServices = {
     createFollowUser,
+    unfollowUser,
     getAllFollow,
     getAllFollowFilter
 }

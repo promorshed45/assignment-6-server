@@ -17,10 +17,10 @@ router.get(
   FollowController.getAllFollow,
 );
 
-router.get(
-  '/filter',
+router.delete(
+  '/',
   // auth("USER","ADMIN"),
-  FollowController.getAllFollowFilter,
+  FollowController.unfollowUser,
 );
 
 

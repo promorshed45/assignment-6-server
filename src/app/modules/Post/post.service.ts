@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import puppeteer from 'puppeteer';
 import { QueryBuilder } from '../../builder/QueryBuilder';
 import { TImageFiles } from '../../interface/image.interface';
 import { addDocumentToIndex } from '../../utils/meilisearch';
@@ -10,7 +9,6 @@ import {
   SearchItemByDateRangeQueryMaker,
   SearchItemByUserQueryMaker,
 } from './post.utils';
-import { PDFDocument, rgb } from 'pdf-lib';
 
 const createPostIntoDB = async (payload: TPost, images: TImageFiles) => {
   const existingPost = await Post.findOne({
@@ -71,46 +69,6 @@ const deletePostFromDB = async (itemId: string) => {
   return result;
 };
 
-const generatePdfPost = async (post) => {
-  const browser = await puppeteer.launch();  // Ensure Puppeteer is properly configured
-  const page = await browser.newPage();
-
-  const htmlContent = `
-  <html>
-    <head>
-      <title>${post.title}</title>
-      <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
-        p { margin: 10px 0; }
-      </style>
-    </head>
-    <body>
-      <h1>${post.title}</h1>
-      <p>${post.description}</p>
-      <h2>Comments:</h2>
-      <!-- Include comments if available -->
-    </body>
-  </html>
-  `;
-
-  await page.setContent(htmlContent);
-  const pdfBuffer = await page.pdf({ format: 'A4', timeout: 60000 });
-  await browser.close();
-
-  return pdfBuffer;
-};
-
-
-const createPdfPost = async (post) => {
-  console.log('Received post data:', post);
-
-  const doc = await PDFDocument.create();
-  const page = doc.addPage();
-  page.drawText(post.title, { x: 50, y: 750 });
-  page.drawText(post.description, { x: 50, y: 700 });
-  return await doc.save();
-};
 
 
 export const PostServices = {
@@ -118,7 +76,5 @@ export const PostServices = {
   getAllPostFromDB,
   getPostFromDB,
   updatePost,
-  deletePostFromDB,
-  generatePdfPost,
-  createPdfPost,
+  deletePostFromDB
 };

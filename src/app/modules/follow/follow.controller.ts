@@ -11,7 +11,7 @@ const createFollow = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'User Following',
+    message: 'Followed successfully',
     data: result,
   });
 });
@@ -42,10 +42,28 @@ const getAllFollowFilter = catchAsync(async (req, res) => {
     });
   });
   
+
+// Unfollow the user
+const unfollowUser = catchAsync(async (req, res) => {
+  const followerId = req.query.followerId as string; 
+  const followingId = req.query.followingId as string; 
+
+  // Call the service to unfollow the user
+  const result = await FollowServices.unfollowUser({ followerId, followingId });
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Unfollowed Successfully',
+    data: result,
+  });
+});
+
   
 
 export const FollowController = {
   createFollow,
+  unfollowUser,
   getAllFollow,
   getAllFollowFilter
 };
