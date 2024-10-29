@@ -6,6 +6,8 @@ import { PostRoutes } from '../modules/Post/post.route';
 import { CommentRoutes } from '../modules/Comment/comment.route';
 import { FollowRoute } from '../modules/follow/follow.route';
 import { MeilisearchRoute } from '../modules/Meilisearch/meilisearch.routes';
+import { PaymentRoute } from '../modules/payment/payment.route';
+import { VerifyRoute } from '../modules/VerifyAccount/verify.route';
 
 type TModuleRoutes = {
   path: string;
@@ -39,14 +41,19 @@ const moduleRoutes: TModuleRoutes[] = [
     path: '/following',
     route: FollowRoute,
   },
-
-  
   {
     path: '/search-posts',
     route: MeilisearchRoute,
-},
-  
- 
+  },
+  {
+    path: "/verify",
+    route: VerifyRoute,
+  },
+  {
+    path: "/payment",
+    route: PaymentRoute,
+  },
+
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
