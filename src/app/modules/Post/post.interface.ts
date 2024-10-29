@@ -7,6 +7,8 @@ export interface TPost extends Document {
   title: string;
   description: string;
   category: string;
+  upvote: number;
+  downVote: number;
   status: TPostStatus;
   isDeleted: boolean;
 }

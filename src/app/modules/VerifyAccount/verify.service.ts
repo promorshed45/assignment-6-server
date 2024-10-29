@@ -8,75 +8,16 @@ import { User } from "../User/user.model";
 import { initiatePayment } from "../payment/payment.utilis";
 
 
-
-// const createVerifyUser = async (userData: any) => {
-//   try {
-//     // Validate the user exists
-//     // const user = await User.findById(userData.user);
-//     // if (!user) {
-//     //   throw new AppError(httpStatus.NOT_FOUND, "User not found");
-//     // }
-
-//     // // Check if the user is already verified
-//     // if (user.verified) {
-//     //   throw new AppError(httpStatus.BAD_REQUEST, "User is already verified");
-//     // }
-
-//     // Generate transaction ID
-//     const transactionId = `TXN-${Date.now()}`;
-
-//     // Prepare payload
-//     const payload = {
-//       ...userData,
-//       transactionId,
-//     };
-
-//     // Create the verify entry
-//     const verifyUserEntry = await Verify.create(payload);
-//     console.log('verifyUserEntry', verifyUserEntry);
-
-//     // Prepare payment data
-//     const paymentData = {
-//       transactionId,
-//       amount: userData.amount,
-//       customerName: userData.user.name,
-//       customerEmail: userData.user.email,
-//       customerPhone: userData.user.mobileNumber,
-//     };
-
-
-//     // Initiate payment
-//     const paymentSession = await initiatePayment(paymentData);
-
-//     // Update user status to verified
-//     // userData.user.verified = true;
-//     // await userData.user.save();
-
-//     // Populate user information
-//     const populatedVerify = await verifyUserEntry.populate("user");
-
-//     console.log('populatedVerify', populatedVerify);
-
-//     return { populatedVerify, paymentSession };
-    
-//   } catch (error) {
-//     console.error('Error in createVerifyUser:', error);
-//     throw error;
-//   }
-// };
-
-
 const createVerifyUser = async (userData: any) => {
 
   const user = await User.findById(userData.user);
-    if (!user) {
-      throw new AppError(httpStatus.NOT_FOUND, "User not found");
-    }
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, "User not found");
+  }
 
-  // Check if the user is already verified
-    if (user.verified) {
-      throw new AppError(httpStatus.BAD_REQUEST, "User is already verified");
-    }
+  if (user.verified === true) {
+    throw new AppError(httpStatus.NOT_FOUND, "User already verified");
+  }
 
   const transactionId = `TXN-${Date.now()}`;
 
@@ -109,6 +50,5 @@ const createVerifyUser = async (userData: any) => {
 
 
 export const VerifyService = {
-  // createVerify,
   createVerifyUser
 };

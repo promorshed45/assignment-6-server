@@ -25,7 +25,7 @@ export const initiatePayment = async (paymentData: any) => {
   return response.data;
 };
 
-export const verifyPayment = async (tnxId: string, cus_email: string) => {
+export const verifyPayment = async (tnxId: string) => {
   try {
     const response = await axios.get(config.payment_verify_url!, {
       params: {
@@ -33,7 +33,6 @@ export const verifyPayment = async (tnxId: string, cus_email: string) => {
         signature_key: config.signature_key,
         type: "json",
         request_id: tnxId,
-        cus_email
       },
     });
 

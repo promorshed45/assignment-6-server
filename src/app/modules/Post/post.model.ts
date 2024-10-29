@@ -10,12 +10,13 @@ const postSchema = new Schema<TPost>(
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true },
     category: { type: String, required: true },
+    upvote: { type: Number, default: 0 },
+    downVote: { type: Number, default: 0 },
     status: { type: String, enum: [POST_STATUS.FREE, POST_STATUS.PREMIUM] },
     isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
-
 
 
 export const Post = mongoose.model<TPost>("Post", postSchema);
