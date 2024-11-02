@@ -2,10 +2,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import httpStatus from "http-status";
-import { Verify } from "./verify.model";
+import { Payment } from "./verify.model";
 import AppError from "../../errors/AppError";
-import { User } from "../User/user.model";
 import { initiatePayment } from "../payment/payment.utilis";
+import { paymentSearchableFields } from "../User/user.constant";
+import { QueryBuilder } from "../../builder/QueryBuilder";
+import { User } from "../User/user.model";
 
 
 const createVerifyUser = async (userData: any) => {
@@ -26,7 +28,7 @@ const createVerifyUser = async (userData: any) => {
     transactionId
   }
 
-  const result = await Verify.create(payload);
+  const result = await Payment.create(payload);
   console.log(result);
 
   // Prepare payment data
@@ -47,8 +49,19 @@ const createVerifyUser = async (userData: any) => {
   return paymentSession;
 }
 
+const getAllPayemnt = async (query: Record<string, unknown>) => {
+  const Payments = new QueryBuilder(Payment.find().populate("user"), query)
+    .fields()
+    .paginate()
+    .sort()
+    .filter()
+    .search(paymentSearchableFields);
 
+  const result = await Payments.modelQuery;
+  return result;
+};
 
 export const VerifyService = {
-  createVerifyUser
+  createVerifyUser,
+  getAllPayemnt
 };

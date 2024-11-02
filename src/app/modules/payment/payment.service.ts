@@ -7,7 +7,7 @@ import { Verify } from '../VerifyAccount/verify.model';
 import { verifyPayment } from './payment.utilis';
 
 // eslint-disable-next-line no-unused-vars
-const confirmationService = async (transactionId: string, status: string, cus_email: string) => {
+const confirmationService = async (transactionId: string) => {
   const verifyResponse = await verifyPayment(transactionId);
 //   console.log(verifyResponse);
 

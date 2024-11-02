@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
-import { TVerify } from './verify.interface';
+import { TPayment } from './verify.interface';
 
 
-const VerifySchema = new Schema<TVerify>({
+const PaymentSchema = new Schema<TPayment>({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   status: {
     type: String,
@@ -28,5 +28,5 @@ const VerifySchema = new Schema<TVerify>({
 
 
 // Define and export the Verify model
-export const Verify = model<TVerify>('Verify', VerifySchema);
+export const Payment = model<TPayment>('Payment', PaymentSchema);
 

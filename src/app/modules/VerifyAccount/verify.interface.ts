@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-export type TVerify = {
+export type TPayment = {
   user: Types.ObjectId;
   status: string;
   paymentStatus: string;

@@ -12,10 +12,10 @@ router.post('/',
   VerifyController.verifyAccount
 );
 
-router.post(
-  '/',
-  // auth("USER"),
-  VerifyController.verifyAccount
+router.get(
+  '/all-payment',
+  // auth("ADMIN"),
+  VerifyController.getAllPayments
 );
 
 

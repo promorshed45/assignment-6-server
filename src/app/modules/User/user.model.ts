@@ -49,9 +49,12 @@ const userSchema = new Schema<TUser, IUserModel>(
       type: Boolean,
       default: false,
     },
-    flower: {
-      type: Number,
-      default: 0,
+    flowerStatus: {
+      type: [{
+        followerId: { type: Schema.Types.ObjectId, required: true },
+        status: { type: Boolean, default: false },
+      }],
+      default: [],
     },
   },
   {

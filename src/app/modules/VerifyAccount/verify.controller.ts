@@ -17,8 +17,18 @@ const verifyAccount = catchAsync(async (req, res) => {
  
 
 
+const getAllPayments = catchAsync(async (req, res) => {
+  const postData = await VerifyService.getAllPayemnt(req.query);
 
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Post retrieved successfully',
+    data: postData,
+  });
+});
 
 export const VerifyController = {
-  verifyAccount
+  verifyAccount,
+  getAllPayments
 };
